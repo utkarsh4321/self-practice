@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HomeWrok</title>
+  <link rel="stylesheet" href="./css/all.css">
+  <link rel="stylesheet" href="./css/bootstrap.css">
+  <link rel="stylesheet" href="./css/style.css">
+
+  <style>
+    .tooltipss {
+      position: relative;
+      display: inline-block;
+      border-bottom: 1px dotted black;
+    }
+
+    .tooltipss .tooltiptext {
+      /* visibility: hidden; */
+      display: none;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.603);
+      color: #fff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 1rem;
+      position: absolute;
+      z-index: 1;
+      top: -5px;
+      left: 105%;
+    
+    }
+
+    .tooltipss .tooltiptext::after {
+      content: "";
+      position: absolute;
+      top: 25%;
+      right: 100%;
+      margin-top: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent black transparent transparent;
+    }
+
+    /* .tooltipss:focus .tooltiptext {
+      visibility: visible;
+    } */
+  </style>
+
+
+
+
+</head>
+
+<body>
+  <h1>Hello this is my website</h1>
+
+
+  <div class="container">
+
+
+
+
+    <form class="tooltipss">
+      <input type="text" id="text">
+      <span class="tooltiptext">
+        <ul style="padding:0;margin:0;list-style-type: none;">
+          <li><input type="checkbox">1 upper-case</li>
+          <li><input type="checkbox">1 Lower-case</li>
+          <li><input type="checkbox">1 special-symbol</li>
+          <li><input type="checkbox">1 number</li>
+          <li><input type="checkbox">8 character-long</li>
+        </ul>
+      </span>
+    </form>
+  </div>
+
+  </div>
+
+
+
+  <script src="./js/jquery.min.js"></script>
+
+  <script src="./js/bootstrap.bundle.min.js"></script>
+  <script>
+    const text = document.getElementById('text');
+    text.addEventListener('focus', checkInput);
+    text.addEventListener('blur', checkMe);
+
+    function checkInput(e) {
+      console.log(e.target.nextElementSibling);
+      this.nextElementSibling.style.display = 'block';
+
+
+      e.preventDefault();
+    }
+    // FUNCTION FOR The BLUR EVENT
+    function checkMe(e) {
+
+      e.target.nextElementSibling.style.display = 'none';
+
+      e.preventDefault();
+    }
+
+
+
+    text.addEventListener('keyup', (e) => {
+      let tit = text.value;
+      let arr = [];
+
+      if (e.keyCode === 8) {
+
+
+        console.log('hello world');
+
+        let spit = tit.split('');
+        arr.push(tit);
+        spit.forEach(element => {
+          if (element !== /[A-Z]/) {
+
+            console.log('this is not matches');
+
+
+          }
+        });
+      }
+      if ((tit.length) === 8) {
+
+        console.log(e.target.nextElementSibling.children[0].children[4].children[0].checked = true);
+
+
+      }
+
+
+      if ((/[A-Z]/).test(tit.charAt(tit.length - 1))) {
+        console.log(e.target.nextElementSibling.children[0].children[0].children[0].checked = true);
+
+
+      } else if ((/[a-z]/).test(tit.charAt(tit.length - 1))) {
+
+        console.log(e.target.nextElementSibling.children[0].children[1].children[0].checked = true);
+
+
+      } else if ((/[!@#\$%\^&\*\[\]"\';:_\-<>\., =\+\/\\]/).test(tit.charAt(tit.length - 1))) {
+
+        console.log(e.target.nextElementSibling.children[0].children[2].children[0].checked = true);
+
+      } else if ((/[0-9]/).test(tit.charAt(tit.length - 1))) {
+
+        console.log(e.target.nextElementSibling.children[0].children[3].children[0].checked = true);
+
+
+      }
+
+
+      e.preventDefault();
+    });
+
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
+</body>
+
+</html>
